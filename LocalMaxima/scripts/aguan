@@ -1,0 +1,30 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Sun Mar  4 21:51:31 2018
+
+@author: noel
+"""
+import argparse
+import optparse
+import sys
+from LocalMaxima.subscripts import sim, gen_psf
+
+subscripts = [sim,gen_psf]
+usage = "usage: %prog --inputfile [input file] [options] [args]"
+d = "This script is used to set up and molecular dynamic simulations."
+opt_parser = optparse.OptionParser(usage, description=d)
+
+arg_parser = argparse.ArgumentParser(description=d)
+subparsers = arg_parser.add_subparsers()
+
+for s in subscripts:
+    s.register_parser(subparsers)
+
+args = arg_parser.parse_args()
+if len(sys.argv) > 1:
+    args.func(args)
+else:
+    print("aguan needs arguments to work. For instructions, type...\n")
+    print("aguan sim --help          :To run MD simulations.")
+    print("aguan generate--help      :To create files for MD simulations.")

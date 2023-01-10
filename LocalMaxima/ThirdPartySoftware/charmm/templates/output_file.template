@@ -1,0 +1,5 @@
+open write unit 69 form name {{out_filename}}.txt
+write title unit 69
+* state ,mmgbsa ,elec ,gb ,vdw ,sasa
+*
+

@@ -1,0 +1,29 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Sun Mar  4 21:51:31 2018
+
+@author: noel
+"""
+import argparse
+import optparse
+import sys
+
+from LocalMaxima.subscripts import zmplot, simout
+subscripts = [zmplot,simout]
+usage = "usage: %prog --in [input file] [options] [args]"
+d = "This script is used plot from tables."
+opt_parser = optparse.OptionParser(usage, description=d)
+
+arg_parser = argparse.ArgumentParser(description=d)
+subparsers = arg_parser.add_subparsers()
+
+for s in subscripts:
+    s.register_parser(subparsers)
+
+args = arg_parser.parse_args()
+if len(sys.argv) > 1:
+    args.func(args)
+else:
+    print("nplot needs arguments to work. For instructions, type...\n")
+    print("nplot csv --help          :Plots from files..")

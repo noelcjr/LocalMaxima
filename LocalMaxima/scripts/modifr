@@ -1,0 +1,28 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+
+import argparse
+import optparse
+import sys
+# from LocalMaxima.subscripts import column, row, add, remove, extract, copy, rename
+# subscripts = [column, row, add, remove, extract, copy, rename]
+
+from LocalMaxima.subscripts import extract, add, remove, columns, copy, rename
+subscripts = [add, remove, extract, columns, copy, rename]
+usage = "usage: %prog --inputfile [input file] [options] [args]"
+d = "This script modifies txt, PDB and CIF files."
+opt_parser = optparse.OptionParser(usage, description=d)
+
+arg_parser = argparse.ArgumentParser(description=d)
+subparsers = arg_parser.add_subparsers()
+
+for s in subscripts:
+    s.register_parser(subparsers)
+
+args = arg_parser.parse_args()
+if len(sys.argv) > 1:
+    args.func(args)
+else:
+    print("modifr needs arguments to work. For instructions, type...\n")
+    print("modifr extract --help          :To extract selected atoms into a new structure.")
+    print("modifr columns --help          :To swap columns within a PDB file.\n")

@@ -1,0 +1,7 @@
+Local_Maxima.egg-info/
+build/
+dist/
+Tests/
+.idea
+*.pyc
+ISSUES.txt

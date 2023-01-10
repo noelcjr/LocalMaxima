@@ -1,0 +1,47 @@
+nbond -
+inbfrq 10 ctonnb 960.0 ctofnb 980.0 cutnb 900.0 wmin 1.5  -
+elec atom switch cdiel eps 1.0 vdw vatom vswitch -
+e14fac 1.0 nbxmod 5
+ 
+energy
+
+stream "/home/noel/Projects/Protein_design/Parameters/radii_prot_na_dfg.str"
+
+set engB ?ENER
+set eleB ?ELEC
+set gbeB ?GBEN
+set vdwB ?VDW
+set aspB ?ASP
+
+write title unit 69
+* bound, @engB, @eleB, @gbeB, @vdwB, @aspB
+*
+
+coor trans xdir 0.0 ydir 0.0 zdir {{z}} factor 1.0 -
+  sele ({{chain}}) end
+
+energy
+
+set engU ?ENER
+set eleU ?ELEC
+set vdwU ?VDW
+set aspU ?ASP
+set gbeU ?GBEN
+
+write title unit 69
+* unbound, @engU, @eleU, @gbeU, @vdwU, @aspU
+*
+
+calc engD @engB - @engU
+calc eleD @eleB - @eleU
+calc vdwD @vdwB - @vdwU
+calc aspD @aspB - @aspU
+calc gbeD @gbeB - @gbeU
+
+write title unit 69
+* deltaG, @engD, @eleD, @gbeD, @vdwD, @aspD
+*
+
+close unit 69
+stop
+

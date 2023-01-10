@@ -1,0 +1,4 @@
+open read unit 1 card name {{in_filename}}.psf
+read psf unit 1 card
+close unit 1
+

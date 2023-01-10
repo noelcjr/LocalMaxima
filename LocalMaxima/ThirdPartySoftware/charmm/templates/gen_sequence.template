@@ -1,0 +1,17 @@
+generate {{chn}} setup
+
+ic purge ! remove unused entries (at ends)
+! fill in missing values in ic table with 
+! bondlengths and angles from parameter file
+ic param 
+
+! construct cartesian coordinates from the internal coordinates
+! this will make alpha helical backbone, and extended sidechains
+
+ic seed {{chn}} 1 N   {{chn}} 1 CA  {{chn}} 1 C
+ic build
+write coor pdb name {{name}}.pdb
+* Built in CHARMM
+*
+
+stop

@@ -1,0 +1,26 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+
+import argparse
+import optparse
+import sys
+
+from LocalMaxima.subscripts import pdb, protein
+subscripts = [pdb, protein]
+usage = "usage: %prog --inputfile [input file] [options] [args]"
+d = "This script is used to modify structures from PDB or CIF files as input."
+opt_parser = optparse.OptionParser(usage, description=d)
+
+arg_parser = argparse.ArgumentParser(description=d)
+subparsers = arg_parser.add_subparsers()
+
+for s in subscripts:
+    s.register_parser(subparsers)
+
+args = arg_parser.parse_args()
+if len(sys.argv) > 1:
+    args.func(args)
+else:
+    print("prepr needs arguments to work. For instructions, type..\n")
+    print("prepr pdb --help              :To fix a complete PDB file by adding hydrogen atoms and terminals.\n")
+    print("prepr protein --help          :To generate an unfolded structure from sequence information.\n" )

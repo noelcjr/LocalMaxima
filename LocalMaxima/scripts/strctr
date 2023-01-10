@@ -1,0 +1,28 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+
+import argparse
+import optparse
+import sys
+
+from LocalMaxima.subscripts import gaps, minmax, summary, align
+subscripts = [gaps, minmax, summary, align]
+usage = "usage: %prog --inputfile [input file] [options] [args]"
+d = "This script is used to modify structures from PDB or CIF files as input."
+opt_parser = optparse.OptionParser(usage, description=d)
+
+arg_parser = argparse.ArgumentParser(description=d)
+subparsers = arg_parser.add_subparsers()
+
+for s in subscripts:
+    s.register_parser(subparsers)
+
+args = arg_parser.parse_args()
+if len(sys.argv) > 1:
+    args.func(args)
+else:
+    print("strctr needs arguments to work. For instructions, type...\n")
+    print("strctr gaps --help             :To find structural gaps in PDB or CIF files.")
+    print("strctr minmax --help           :To get minimum and maximum values in a structure or substructure.")
+    print("strctr summary --help          :To output information about the structure.")  
+    print("strctr align --help.           :To align to structures by atom selections.\n")
