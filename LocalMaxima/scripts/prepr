@@ -22,5 +22,5 @@ if len(sys.argv) > 1:
     args.func(args)
 else:
     print("prepr needs arguments to work. For instructions, type..\n")
-    print("prepr pdb --help              :To fix a complete PDB file by adding hydrogen atoms and terminals.\n")
+    print("prepr pdb_files --help              :To fix a complete PDB file by adding hydrogen atoms and terminals.\n")
     print("prepr protein --help          :To generate an unfolded structure from sequence information.\n" )

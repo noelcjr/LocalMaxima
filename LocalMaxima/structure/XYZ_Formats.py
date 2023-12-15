@@ -91,10 +91,10 @@ class dcd(object):
                     self.cord_idx = (a+12)
                 self.INIT = self.NSET
             self.INIT = init
-            columns_dict[dcd_box+"_OH_"+dcdID] = pd.Series(OH_mZ)
-            columns_dict[dcd_box+"_LJ_"+dcdID] = pd.Series(LJ_mZ)
-            columns_dict[dcd_box+"_OH_"+dcdID+"_L"] = pd.Series(OHs_Zl)
-            columns_dict[dcd_box+"_LJ_"+dcdID+"_L"] = pd.Series(LJs_Zl)
+            columns_dict[dcd_box+"_OH_"+dcdID] = OH_mZ #pd.Series(OH_mZ)
+            columns_dict[dcd_box+"_LJ_"+dcdID] = LJ_mZ #pd.Series(LJ_mZ)
+            columns_dict[dcd_box+"_OH_"+dcdID+"_L"] = OHs_Zl #pd.Series(OHs_Zl)
+            columns_dict[dcd_box+"_LJ_"+dcdID+"_L"] = LJs_Zl #pd.Series(LJs_Zl)
         DF = pd.DataFrame(columns_dict)
         print("Getting Z distribution OH and monoatomic.")
         print("Indexed scaled by multiplying by 0.002 and get nanosecons")
